@@ -1,0 +1,30 @@
+# Binaries
+/dora
+/dora-api
+*.exe
+*.exe.manifest
+*.dll
+*.so
+*.dylib
+
+# Test & Coverage
+*.out
+*.test
+coverage.txt
+.coverage
+
+# IDE & OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# SQLite DBs
+*.db
+*.sqlite
+*.sqlite3
+
+# Release build artifacts
+dist/
+build/
+bin/
