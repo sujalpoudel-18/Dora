@@ -1,0 +1,17 @@
+id: dora-mongodb-exposure
+info:
+  name: MongoDB Database Service Exposure
+  author: dora
+  severity: high
+  description: Detects exposed MongoDB service port without SSL/TLS or access controls.
+  remediation: Enable MongoDB authentication and restrict network binding to localhost.
+  tags:
+    - database
+    - mongodb
+    - exposure
+
+tcp:
+  - port: 27017
+    matchers:
+      - type: status
+        status: open

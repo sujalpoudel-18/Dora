@@ -1,0 +1,20 @@
+id: web-xss-reflected
+name: Reflected Cross-Site Scripting Indicator
+author: dora
+severity: medium
+confidence: medium
+description: Detects reflection of inert test markers in HTTP response body without proper encoding.
+tags:
+  - web
+  - xss
+  - injection
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/?q=DORA_XSS_TEST_MARKER"
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "DORA_XSS_TEST_MARKER"

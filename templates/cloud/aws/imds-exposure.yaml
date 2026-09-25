@@ -1,0 +1,22 @@
+id: cloud-aws-metadata-exposure
+name: AWS EC2 Instance Metadata Service Exposure
+author: dora
+severity: critical
+confidence: high
+description: Detects exposed AWS IMDSv1 endpoint accessible via SSRF or network misconfiguration.
+tags:
+  - cloud
+  - aws
+  - metadata
+  - ssrf
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/latest/meta-data/"
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "ami-id"
+          - "instance-id"

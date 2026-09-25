@@ -1,0 +1,18 @@
+id: dora-mysql-exposure
+info:
+  name: MySQL Database Service Exposure
+  author: dora
+  severity: high
+  description: Detects exposed MySQL database service port accessible over public network.
+  remediation: Restrict port 3306 to authorized local IP addresses or internal network interfaces.
+  tags:
+    - database
+    - mysql
+    - exposure
+
+tcp:
+  - port: 3306
+    matchers:
+      - type: regex
+        regex:
+          - "^[0-9A-Za-z\\.-]+"

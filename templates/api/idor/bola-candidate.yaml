@@ -1,0 +1,25 @@
+id: api-bola-idor
+name: Broken Object Level Authorization (BOLA / IDOR) Candidate
+author: dora
+severity: high
+confidence: medium
+description: Detects accessible resource endpoints using incremental numeric object identifiers.
+tags:
+  - api
+  - idor
+  - bola
+  - authorization
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/api/v1/users/1001"
+    matchers:
+      - type: status
+        status:
+          - 200
+      - type: word
+        part: body
+        words:
+          - "id"
+          - "email"

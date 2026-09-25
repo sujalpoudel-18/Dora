@@ -1,0 +1,21 @@
+id: dora-postgres-exposure
+info:
+  name: PostgreSQL Database Service Exposure
+  author: dora
+  severity: high
+  description: Detects exposed PostgreSQL database service port accessible over public network.
+  remediation: Restrict port 5432 to authorized local IP addresses or internal networks.
+  tags:
+    - database
+    - postgres
+    - exposure
+
+tcp:
+  - port: 5432
+    inputs:
+      - data: "\x00\x00\x00\x08\x04\xd2\x16\x2f"
+    matchers:
+      - type: word
+        words:
+          - "S"
+          - "N"

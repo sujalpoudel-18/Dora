@@ -1,0 +1,21 @@
+id: k8s-exposed-dashboard
+name: Kubernetes Exposed Dashboard Interface
+author: dora
+severity: high
+confidence: high
+description: Detects exposed unauthenticated Kubernetes Web UI Dashboard.
+tags:
+  - kubernetes
+  - misconfiguration
+  - exposure
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/"
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "kubernetes-dashboard"
+          - "ng-app=\"kubernetesDashboard\""
